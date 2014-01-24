@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <script src="assets/js/jquery-1.7.2.min.js"></script>
+    <script src="assets/js/hammer.js"></script>
+    <script src="assets/js/jquery.hammer.js"></script>
+
+    <script src="assets/js/mainScript.js"></script>
+    <link href='assets/css/style.css' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+<div id="infos"></div>
+<div id="content">
+    <div id="zoomwrapper">
+        <div id="zoom" class="zoomProps" >
+                <img id="image" src="" alt=""/>
+        </div>
+    </div>
+    <div id="contentOverlay">
+        <div id="overlayTop"></div>
+        <div id="overlayBottom"></div>
+        <div id="overlayLeft"></div>
+        <div id="overlayRight"></div>
+    </div>
+
+</div>   
+<button id="button" onclick="mainScript.getImagePosition()">do stuff</button> 
+<button id="button" onclick="mainScript.isPhotoInRectangle()">check rectangle</button> 
+<button id="button" onclick="mainScript.sendDataToPhp()">send data</button> 
+
+<script>
+    var containerSize = {
+        "h":300,
+        "w":400
+    }
+
+    var cropSize = {
+        "h":100,
+        "w":200
+    }
+
+    mainScript.buildHtml("assets/img/pic1.jpg",containerSize, cropSize);
+
+</script>
+    <script src="assets/js/myLogic.js"></script>
+</body>
+</html>

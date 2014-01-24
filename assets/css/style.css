@@ -1,0 +1,81 @@
+@charset "UTF-8";
+/* CSS Document */
+body{
+	width: 100%;
+	height: 700px;
+	margin: 0px;
+}
+#infos{
+	position: absolute;
+	top: 0px;
+	right: 100px;
+	width: 100px;
+	height: 100px;
+
+}
+#content{
+	position: relative;
+	width: 900px;
+	height: 700px;
+	background-color: grey;
+	overflow: hidden;
+}
+
+#contentOverlay{
+	pointer-events : none;
+}
+
+#overlayTop{
+	background-color: pink;
+	opacity: 0.5;
+	position: absolute;
+	z-index: 10;
+	margin: auto;
+	pointer-events : none;
+}
+
+#overlayBottom{
+	background-color: pink;
+	opacity: 0.5;
+	position: absolute;
+	z-index: 10;
+	margin: auto;
+	pointer-events : none;
+}
+
+#overlayLeft{
+	background-color: pink;
+	opacity: 0.5;
+	position: absolute;
+	z-index: 10;
+	margin: auto;
+	pointer-events : none;
+}
+
+#overlayRight{
+	background-color: pink;
+	opacity: 0.5;
+	position: absolute;
+	z-index: 10;
+	pointer-events : none;
+}
+.zoomProps{	  
+	padding: none;
+	margin: none;
+	width: 600px;
+	position:absolute;
+}
+
+#zoomwrapper {
+	height: 377px;
+	width: 600px;
+	overflow: hidden;
+}
+
+#image{
+	width: 700px;
+}
+
+
+
+
