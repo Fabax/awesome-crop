@@ -111,8 +111,9 @@ $(function(){
         var displayHeight = container.height();
 
         //These two constants specify the minimum and maximum zoom
-        var MIN_ZOOM = appValues.positionCrop.minScale;
+        var MIN_ZOOM = appValues.initCrop.minScale;
         console.log(MIN_ZOOM);
+        
         var MAX_ZOOM = 3;
 
         var scaleFactor = 1;
