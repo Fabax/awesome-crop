@@ -2,6 +2,8 @@ var appValues = {
     "positionCrop" : {
            
         }, 
+
+    "scale":1,
     "imagePostionAfterScale" : 0
 }
 
@@ -29,7 +31,7 @@ var mainScript = {
     },
 
     getImageSize: function(){
-    	var p = $("#image");
+    	var p = $("#zoom");
     	var imageHeight = p.height();
     	var imageWidth = p.width();
 
@@ -42,6 +44,30 @@ var mainScript = {
     	return arraySize;
     },
 
+    getAllData : function(){
+        var imagePostion = this.getImagePosition();
+
+        var returnedArray = {
+            "cropPosition" : {
+                "top" : Math.round(Math.abs(Math.abs(imagePostion.top) - (Math.abs(appValues.imagePostionAfterScale.top) + Math.abs(appValues.positionCrop.top)))),
+                "left" : Math.round(Math.abs(Math.abs(imagePostion.left) - (Math.abs(appValues.imagePostionAfterScale.left) + Math.abs(appValues.positionCrop.left))))
+            },
+
+            "imageSize" : {
+                "width" :Math.round((imagePostion.right - imagePostion.left) * appValues.scale),
+                "height" :Math.round((imagePostion.bottom - imagePostion.top) * appValues.scale),
+                "top" : Math.round(Math.abs(Math.abs(imagePostion.top) - (Math.abs(appValues.imagePostionAfterScale.top)))),
+                "left" : Math.round(Math.abs(Math.abs(imagePostion.left) - (Math.abs(appValues.imagePostionAfterScale.left))))
+            }
+
+            // in case of emergency
+
+        }
+        $( "#infos" ).text( "image top : "+ returnedArray.imageSize.top +" / image left : "+returnedArray.imageSize.left +" / width : "+returnedArray.imageSize.width+" / height : "+returnedArray.imageSize.height );
+        console.log(returnedArray);
+        return returnedArray;
+    },
+
     getRectanglePosition : function(){
     	return appValues.positionCrop;
     },
@@ -51,9 +77,7 @@ var mainScript = {
     	var arrayPostion = this.getImagePosition();
     	//var bool = false;
 
-
-
-    	if( arrayRectangle.top < arrayPostion.top   || arrayRectangle.bottom > arrayPostion.bottom || arrayRectangle.right>  arrayPostion.right ||arrayRectangle.left < arrayPostion.left){
+    	if( arrayRectangle.top < arrayPostion.top || arrayRectangle.bottom > arrayPostion.bottom || arrayRectangle.right>  arrayPostion.right ||arrayRectangle.left < arrayPostion.left){
     		bool = false;
     		$( "#infos" ).text(bool + "top : "+arrayRectangle.top+" "+arrayPostion.top + " / "
     			+ "bottom : "+arrayRectangle.bottom+" "+arrayPostion.bottom + " / "
@@ -107,26 +131,10 @@ var mainScript = {
     },
 
     sendDataToPhp : function(){
-        var imagePostion = this.getImagePosition();
-
-        var returnedArray = {
-            "cropPosition" : {
-                "top" : Math.round(Math.abs(Math.abs(imagePostion.top) - (Math.abs(appValues.imagePostionAfterScale.top) + Math.abs(appValues.positionCrop.top)))),
-                "left" : Math.round(Math.abs(Math.abs(imagePostion.left) - (Math.abs(appValues.imagePostionAfterScale.left) + Math.abs(appValues.positionCrop.left))))
-            },
-
-            "imageSize" : {
-                "width" :Math.round(imagePostion.right - imagePostion.left),
-                "height" :Math.round(imagePostion.bottom - imagePostion.top)
-            }
-
-            // in case of emergency
-
-        }
-        $( "#infos" ).text( "crop top : "+ returnedArray.cropPosition.top +" / crop left : "+returnedArray.cropPosition.left +" / width : "+returnedArray.imageSize.width+" / height : "+returnedArray.imageSize.height );
-        console.log(returnedArray);
-        return returnedArray;
+        return getAllData();
     }
+
+
 
 
 
